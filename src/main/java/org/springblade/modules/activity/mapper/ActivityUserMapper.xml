@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springblade.modules.activity.mapper.ActivityUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="activityUserResultMap" type="org.springblade.modules.activity.entity.ActivityUser">
+        <result column="id" property="id"/>
+        <result column="active_id" property="activeId"/>
+        <result column="user_id" property="userId"/>
+        <result column="is_payment" property="isPayment"/>
+        <result column="money" property="money"/>
+    </resultMap>
+
+
+    <select id="selectActivityUserPage" resultMap="activityUserResultMap">
+        select * from activity_user where is_deleted = 0
+    </select>
+
+</mapper>
