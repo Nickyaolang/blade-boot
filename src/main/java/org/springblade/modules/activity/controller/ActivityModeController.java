@@ -25,6 +25,7 @@ import javax.validation.Valid;
 
 import org.springblade.core.mp.support.Condition;
 import org.springblade.core.mp.support.Query;
+import org.springblade.core.secure.utils.AuthUtil;
 import org.springblade.core.tool.api.R;
 import org.springblade.core.tool.utils.Func;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +61,7 @@ public class ActivityModeController extends BladeController {
 	}
 
 	/**
-	 * 分页 
+	 * 分页
 	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
@@ -71,7 +72,7 @@ public class ActivityModeController extends BladeController {
 	}
 
 	/**
-	 * 自定义分页 
+	 * 自定义分页
 	 */
 	@GetMapping("/page")
 	@ApiOperationSupport(order = 3)
@@ -82,7 +83,7 @@ public class ActivityModeController extends BladeController {
 	}
 
 	/**
-	 * 新增 
+	 * 新增
 	 */
 	@PostMapping("/save")
 	@ApiOperationSupport(order = 4)
@@ -92,7 +93,7 @@ public class ActivityModeController extends BladeController {
 	}
 
 	/**
-	 * 修改 
+	 * 修改
 	 */
 	@PostMapping("/update")
 	@ApiOperationSupport(order = 5)
@@ -102,18 +103,19 @@ public class ActivityModeController extends BladeController {
 	}
 
 	/**
-	 * 新增或修改 
+	 * 新增或修改
 	 */
 	@PostMapping("/submit")
 	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入activityMode")
 	public R submit(@Valid @RequestBody ActivityMode activityMode) {
+		activityMode.setCreateUserName(AuthUtil.getUserName());
 		return R.status(activityModeService.saveOrUpdate(activityMode));
 	}
 
-	
+
 	/**
-	 * 删除 
+	 * 删除
 	 */
 	@PostMapping("/remove")
 	@ApiOperationSupport(order = 8)
@@ -122,5 +124,5 @@ public class ActivityModeController extends BladeController {
 		return R.status(activityModeService.removeByIds(Func.toLongList(ids)));
 	}
 
-	
+
 }

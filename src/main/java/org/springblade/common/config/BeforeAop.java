@@ -18,7 +18,7 @@ import java.util.Date;
 @Aspect
 public class BeforeAop {
 
-	@Before("execution(* org.springblade.modules.activity.controller.*.save(..))")
+	@Before("execution(* org.springblade.modules.activity.controller.*.submit(..))")
 	public void beFore(JoinPoint joinPoint) {
 		Object[] args = joinPoint.getArgs();
 		for (Object arg : args) {

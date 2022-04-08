@@ -60,10 +60,10 @@ public class ActivityMode extends BaseEntity {
 	@ApiModelProperty(value = "活动地点")
 	private String address;
 	/**
-	 * 活动时间
+	 * 创建人姓名
 	 */
-	@ApiModelProperty(value = "活动时间")
-	private LocalDate activityTime;
+	@ApiModelProperty(value = "创建人姓名")
+	private String createUserName;
 	/**
 	 * 活动描述
 	 */

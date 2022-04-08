@@ -21,10 +21,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import lombok.AllArgsConstructor;
+
 import javax.validation.Valid;
 
 import org.springblade.core.mp.support.Condition;
 import org.springblade.core.mp.support.Query;
+import org.springblade.core.secure.utils.AuthUtil;
 import org.springblade.core.tool.api.R;
 import org.springblade.core.tool.utils.Func;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +37,7 @@ import org.springblade.modules.activity.service.IActivityService;
 import org.springblade.core.boot.ctrl.BladeController;
 
 /**
- *  控制器
+ * 控制器
  *
  * @author BladeX
  * @since 2022-04-08
@@ -60,7 +62,7 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
-	 * 分页 
+	 * 分页
 	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
@@ -71,7 +73,7 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
-	 * 自定义分页 
+	 * 自定义分页
 	 */
 	@GetMapping("/page")
 	@ApiOperationSupport(order = 3)
@@ -82,7 +84,7 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
-	 * 新增 
+	 * 新增
 	 */
 	@PostMapping("/save")
 	@ApiOperationSupport(order = 4)
@@ -92,7 +94,7 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
-	 * 修改 
+	 * 修改
 	 */
 	@PostMapping("/update")
 	@ApiOperationSupport(order = 5)
@@ -102,18 +104,19 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
-	 * 新增或修改 
+	 * 新增或修改
 	 */
 	@PostMapping("/submit")
 	@ApiOperationSupport(order = 6)
 	@ApiOperation(value = "新增或修改", notes = "传入activity")
 	public R submit(@Valid @RequestBody Activity activity) {
+		activity.setCreateUserName(AuthUtil.getUserName());
 		return R.status(activityService.saveOrUpdate(activity));
 	}
 
-	
+
 	/**
-	 * 删除 
+	 * 删除
 	 */
 	@PostMapping("/remove")
 	@ApiOperationSupport(order = 8)
@@ -122,5 +125,5 @@ public class ActivityController extends BladeController {
 		return R.status(activityService.removeByIds(Func.toLongList(ids)));
 	}
 
-	
+
 }
