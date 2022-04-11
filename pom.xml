@@ -70,10 +70,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.springblade</groupId>
-            <artifactId>blade-starter-http</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springblade</groupId>-->
+<!--            <artifactId>blade-starter-http</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springblade</groupId>
             <artifactId>blade-starter-api-crypto</artifactId>
@@ -118,11 +118,6 @@
             <groupId>org.springblade</groupId>
             <artifactId>blade-core-auto</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springblade</groupId>
-            <artifactId>blade-core-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <!-- 验证码 -->
         <dependency>

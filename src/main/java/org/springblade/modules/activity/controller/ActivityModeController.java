@@ -21,13 +21,17 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import lombok.AllArgsConstructor;
+
 import javax.validation.Valid;
 
 import org.springblade.core.mp.support.Condition;
 import org.springblade.core.mp.support.Query;
 import org.springblade.core.secure.utils.AuthUtil;
 import org.springblade.core.tool.api.R;
+import org.springblade.core.tool.utils.BeanUtil;
 import org.springblade.core.tool.utils.Func;
+import org.springblade.modules.activity.entity.Activity;
+import org.springblade.modules.activity.service.IActivityService;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springblade.modules.activity.entity.ActivityMode;
@@ -35,8 +39,10 @@ import org.springblade.modules.activity.vo.ActivityModeVO;
 import org.springblade.modules.activity.service.IActivityModeService;
 import org.springblade.core.boot.ctrl.BladeController;
 
+import java.util.Date;
+
 /**
- *  控制器
+ * 控制器
  *
  * @author BladeX
  * @since 2022-04-08
@@ -48,6 +54,40 @@ import org.springblade.core.boot.ctrl.BladeController;
 public class ActivityModeController extends BladeController {
 
 	private final IActivityModeService activityModeService;
+
+	private final IActivityService activityService;
+
+
+	/**
+	 * 使用模板
+	 */
+	@PostMapping("/usermode")
+	@ApiOperationSupport(order = 1)
+	@ApiOperation(value = "详情", notes = "传入activityMode")
+	public R<ActivityMode> usermode(ActivityMode activityMode) {
+		ActivityMode activityModeServiceById = activityModeService.getById(activityMode.getId());
+		Activity activity1 = new Activity();
+		activity1.setCreateUser(AuthUtil.getUserId());
+		activity1.setActivityName(activityModeServiceById.getActivityName());
+		activity1.setStatus(1);
+		int count = activityService.count(Condition.getQueryWrapper(activity1));
+		if (count > 0) {
+			return R.fail("请勿重复使用模板！");
+		}
+
+
+		Activity activity = new Activity();
+		BeanUtil.copyProperties(activityModeServiceById, activity);
+		activity.setId(null);
+		activity.setPaymentMethod(1);
+		activity.setActivityAddress(activityModeServiceById.getAddress());
+		activity.setCreateUserName(AuthUtil.getUserName());
+		activity.setCreateUser(AuthUtil.getUserId());
+		activity.setUpdateUser(AuthUtil.getUserId());
+		activity.setUpdateTime(new Date());
+		activity.setCreateTime(new Date());
+		return R.status(activityService.save(activity));
+	}
 
 	/**
 	 * 详情

@@ -14,67 +14,43 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.entity;
+package org.springblade.modules.friend.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.time.LocalDateTime;
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import org.springblade.core.mp.base.BaseEntity;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * 实体类
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-10
  */
 @Data
-@ApiModel(value = "Activity对象", description = "Activity对象")
-public class Activity extends BaseEntity {
+@ApiModel(value = "Team对象", description = "Team对象")
+public class Team extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 活动名称
-	 */
-	@ApiModelProperty(value = "活动名称")
-	private String activityName;
-	/**
-	 * 活动地点
-	 */
-	@ApiModelProperty(value = "活动地点")
-	private String activityAddress;
-	/**
-	 * 活动时间
-	 */
-	@DateTimeFormat(
-		pattern = "yyyy-MM-dd HH:mm:ss"
-	)
-	@JsonFormat(
-		pattern = "yyyy-MM-dd HH:mm:ss"
-	)
-	@ApiModelProperty(value = "活动时间")
-	private Date activityTime;
-	/**
-	 * 活动描述
-	 */
-	@ApiModelProperty(value = "活动描述")
-	private String activityDescription;
-	/**
-	 * 活动原因
-	 */
-	@ApiModelProperty(value = "活动原因")
-	private String activityCase;
-	/**
-	 * 支付方式
-	 */
-	@ApiModelProperty(value = "支付方式")
-	private Integer paymentMethod;
 
+	/**
+	 * 团队名称
+	 */
+	@ApiModelProperty(value = "团队名称")
+	private String name;
+	/**
+	 * 姓名
+	 */
+	@ApiModelProperty(value = "姓名")
+	private String users;
 	/**
 	 * 创建人姓名
 	 */

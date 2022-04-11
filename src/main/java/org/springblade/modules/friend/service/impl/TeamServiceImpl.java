@@ -14,29 +14,28 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service;
+package org.springblade.modules.friend.service.impl;
 
-import org.springblade.core.tool.api.R;
-import org.springblade.modules.activity.entity.ActivityMode;
-import org.springblade.modules.activity.vo.ActivityModeVO;
-import com.baomidou.mybatisplus.extension.service.IService;
+import org.springblade.modules.friend.entity.Team;
+import org.springblade.modules.friend.vo.TeamVO;
+import org.springblade.modules.friend.mapper.TeamMapper;
+import org.springblade.modules.friend.service.ITeamService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
- *  服务类
+ *  服务实现类
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-10
  */
-public interface IActivityModeService extends IService<ActivityMode> {
+@Service
+public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements ITeamService {
 
-	/**
-	 * 自定义分页
-	 *
-	 * @param page
-	 * @param activityMode
-	 * @return
-	 */
-	IPage<ActivityModeVO> selectActivityModePage(IPage<ActivityModeVO> page, ActivityModeVO activityMode);
+	@Override
+	public IPage<TeamVO> selectTeamPage(IPage<TeamVO> page, TeamVO team) {
+		return page.setRecords(baseMapper.selectTeamPage(page, team));
+	}
 
 }

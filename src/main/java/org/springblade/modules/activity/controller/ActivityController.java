@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 
 import javax.validation.Valid;
 
+import lombok.NonNull;
 import org.springblade.core.mp.support.Condition;
 import org.springblade.core.mp.support.Query;
 import org.springblade.core.secure.utils.AuthUtil;
@@ -35,6 +36,9 @@ import org.springblade.modules.activity.entity.Activity;
 import org.springblade.modules.activity.vo.ActivityVO;
 import org.springblade.modules.activity.service.IActivityService;
 import org.springblade.core.boot.ctrl.BladeController;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * 控制器
@@ -49,6 +53,7 @@ import org.springblade.core.boot.ctrl.BladeController;
 public class ActivityController extends BladeController {
 
 	private final IActivityService activityService;
+
 
 	/**
 	 * 详情
@@ -104,6 +109,27 @@ public class ActivityController extends BladeController {
 	}
 
 	/**
+	 * 开始活动
+	 */
+	@PostMapping("/begin")
+	@ApiOperationSupport(order = 5)
+	@ApiOperation(value = "修改", notes = "传入activity")
+	public R begin(@NonNull Long id) {
+		Activity activity = activityService.getById(id);
+		if (activity == null) {
+			return R.fail("未找到活动！");
+		}
+		if (activity.getActivityTime() == null) {
+			return R.fail("请先填写活动时间！");
+		}
+		if (new Date().compareTo(activity.getActivityTime()) >= 0) {
+			return R.fail("活动时间已过了噢！");
+		}
+		activity.setStatus(2);
+		return R.status(activityService.updateById(activity));
+	}
+
+	/**
 	 * 新增或修改
 	 */
 	@PostMapping("/submit")
@@ -113,7 +139,6 @@ public class ActivityController extends BladeController {
 		activity.setCreateUserName(AuthUtil.getUserName());
 		return R.status(activityService.saveOrUpdate(activity));
 	}
-
 
 	/**
 	 * 删除

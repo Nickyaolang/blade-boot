@@ -14,29 +14,23 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service;
+package org.springblade.modules.friend.vo;
 
-import org.springblade.core.tool.api.R;
-import org.springblade.modules.activity.entity.ActivityMode;
-import org.springblade.modules.activity.vo.ActivityModeVO;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springblade.modules.friend.entity.Team;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import io.swagger.annotations.ApiModel;
 
 /**
- *  服务类
+ * 视图实体类
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-10
  */
-public interface IActivityModeService extends IService<ActivityMode> {
-
-	/**
-	 * 自定义分页
-	 *
-	 * @param page
-	 * @param activityMode
-	 * @return
-	 */
-	IPage<ActivityModeVO> selectActivityModePage(IPage<ActivityModeVO> page, ActivityModeVO activityMode);
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "TeamVO对象", description = "TeamVO对象")
+public class TeamVO extends Team {
+	private static final long serialVersionUID = 1L;
 
 }

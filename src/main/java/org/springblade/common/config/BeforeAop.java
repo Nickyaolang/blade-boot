@@ -18,8 +18,8 @@ import java.util.Date;
 @Aspect
 public class BeforeAop {
 
-	@Before("execution(* org.springblade.modules.activity.controller.*.submit(..))")
-	public void beFore(JoinPoint joinPoint) {
+	@Before("execution(* org.springblade.modules.activity.controller.*.submit(..)) || execution(* org.springblade.modules.friend.controller.*.submit(..))")
+	public void submitBeFore(JoinPoint joinPoint) {
 		Object[] args = joinPoint.getArgs();
 		for (Object arg : args) {
 			if (arg instanceof BaseEntity) {
@@ -30,6 +30,17 @@ public class BeforeAop {
 				par.setUpdateTime(new Date());
 			}
 
+		}
+	}
+
+	@Before("execution(* org.springblade.modules.activity.controller.*.page(..)) || execution(* org.springblade.modules.friend.controller.*.page(..))")
+	public void pageBeFore(JoinPoint joinPoint) {
+		Object[] args = joinPoint.getArgs();
+		for (Object arg : args) {
+			if (arg instanceof BaseEntity) {
+				BaseEntity par = (BaseEntity) arg;
+				par.setCreateUser(AuthUtil.getUserId());
+			}
 		}
 	}
 

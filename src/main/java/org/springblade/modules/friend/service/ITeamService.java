@@ -14,11 +14,10 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service;
+package org.springblade.modules.friend.service;
 
-import org.springblade.core.tool.api.R;
-import org.springblade.modules.activity.entity.ActivityMode;
-import org.springblade.modules.activity.vo.ActivityModeVO;
+import org.springblade.modules.friend.entity.Team;
+import org.springblade.modules.friend.vo.TeamVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
@@ -26,17 +25,17 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  *  服务类
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-10
  */
-public interface IActivityModeService extends IService<ActivityMode> {
+public interface ITeamService extends IService<Team> {
 
 	/**
 	 * 自定义分页
 	 *
 	 * @param page
-	 * @param activityMode
+	 * @param team
 	 * @return
 	 */
-	IPage<ActivityModeVO> selectActivityModePage(IPage<ActivityModeVO> page, ActivityModeVO activityMode);
+	IPage<TeamVO> selectTeamPage(IPage<TeamVO> page, TeamVO team);
 
 }
