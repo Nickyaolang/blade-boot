@@ -16,10 +16,10 @@
  */
 package org.springblade.modules.activity.service.impl;
 
-import org.springblade.modules.activity.entity.ActivityDetail;
-import org.springblade.modules.activity.vo.ActivityDetailVO;
-import org.springblade.modules.activity.mapper.ActivityDetailMapper;
-import org.springblade.modules.activity.service.IActivityDetailService;
+import org.springblade.modules.activity.entity.ActivityEvaluate;
+import org.springblade.modules.activity.vo.ActivityEvaluateVO;
+import org.springblade.modules.activity.mapper.ActivityEvaluateMapper;
+import org.springblade.modules.activity.service.IActivityEvaluateService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -31,11 +31,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  * @since 2022-04-11
  */
 @Service
-public class ActivityDetailServiceImpl extends ServiceImpl<ActivityDetailMapper, ActivityDetail> implements IActivityDetailService {
+public class ActivityEvaluateServiceImpl extends ServiceImpl<ActivityEvaluateMapper, ActivityEvaluate> implements IActivityEvaluateService {
 
 	@Override
-	public IPage<ActivityDetailVO> selectActivityDetailPage(IPage<ActivityDetailVO> page, ActivityDetailVO activityDetail) {
-		return page.setRecords(baseMapper.selectActivityDetailPage(page, activityDetail));
+	public IPage<ActivityEvaluateVO> selectActivityEvaluatePage(IPage<ActivityEvaluateVO> page, ActivityEvaluateVO activityEvaluate) {
+		return page.setRecords(baseMapper.selectActivityEvaluatePage(page, activityEvaluate));
 	}
 
 }

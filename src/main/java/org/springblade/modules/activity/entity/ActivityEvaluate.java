@@ -16,8 +16,6 @@
  */
 package org.springblade.modules.activity.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
@@ -32,27 +30,36 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2022-04-11
  */
 @Data
-@ApiModel(value = "ActivityDetail对象", description = "ActivityDetail对象")
-public class ActivityDetail implements Serializable {
+@ApiModel(value = "ActivityEvaluate对象", description = "ActivityEvaluate对象")
+public class ActivityEvaluate implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	* id
+	* 活动评价表id
 	*/
-		@ApiModelProperty(value = "id")
-		@TableId(value = "id", type = IdType.AUTO)
-	private Long id;
+		@ApiModelProperty(value = "活动评价表id")
+		private Long id;
 	/**
-	* 状态（1、未开始 2、待开始 3、进行中 4、已结束）
+	* 用户id
 	*/
-		@ApiModelProperty(value = "状态（1、未开始 2、待开始 3、进行中 4、已结束）")
-		private Integer status;
+		@ApiModelProperty(value = "用户id")
+		private Long userId;
 	/**
-	* 本次费用
+	* 活动id
 	*/
-		@ApiModelProperty(value = "本次费用")
-		private Float money;
+		@ApiModelProperty(value = "活动id")
+		private Long activityId;
+	/**
+	* 父级id
+	*/
+		@ApiModelProperty(value = "父级id")
+		private Long parentId;
+	/**
+	* 评价
+	*/
+		@ApiModelProperty(value = "评价")
+		private String evaluate;
 	/**
 	* 是否已删除
 	*/

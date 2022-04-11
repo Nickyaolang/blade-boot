@@ -26,7 +26,7 @@ import java.util.List;
  *  Mapper 接口
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-11
  */
 public interface ActivityDetailMapper extends BaseMapper<ActivityDetail> {
 

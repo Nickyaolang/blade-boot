@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.springblade.modules.activity.mapper.ActivityDetailMapper">
+<mapper namespace="org.springblade.modules.activity.mapper.ActivityEvaluateMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="activityDetailResultMap" type="org.springblade.modules.activity.entity.ActivityDetail">
+    <resultMap id="activityEvaluateResultMap" type="org.springblade.modules.activity.entity.ActivityEvaluate">
         <id column="id" property="id"/>
-        <result column="status" property="status"/>
-        <result column="money" property="money"/>
+        <result column="user_id" property="userId"/>
+        <result column="activity_id" property="activityId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="evaluate" property="evaluate"/>
         <result column="is_deleted" property="isDeleted"/>
         <result column="create_user" property="createUser"/>
         <result column="create_time" property="createTime"/>
@@ -15,8 +17,8 @@
     </resultMap>
 
 
-    <select id="selectActivityDetailPage" resultMap="activityDetailResultMap">
-        select * from activity_detail where is_deleted = 0
+    <select id="selectActivityEvaluatePage" resultMap="activityEvaluateResultMap">
+        select * from activity_evaluate where is_deleted = 0
     </select>
 
 </mapper>

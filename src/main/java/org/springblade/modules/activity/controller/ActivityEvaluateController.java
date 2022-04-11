@@ -29,9 +29,9 @@ import org.springblade.core.tool.api.R;
 import org.springblade.core.tool.utils.Func;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.springblade.modules.activity.entity.ActivityDetail;
-import org.springblade.modules.activity.vo.ActivityDetailVO;
-import org.springblade.modules.activity.service.IActivityDetailService;
+import org.springblade.modules.activity.entity.ActivityEvaluate;
+import org.springblade.modules.activity.vo.ActivityEvaluateVO;
+import org.springblade.modules.activity.service.IActivityEvaluateService;
 import org.springblade.core.boot.ctrl.BladeController;
 
 /**
@@ -42,20 +42,20 @@ import org.springblade.core.boot.ctrl.BladeController;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("blade-activity/activitydetail")
+@RequestMapping("blade-activity/activityevaluate")
 @Api(value = "", tags = "接口")
-public class ActivityDetailController extends BladeController {
+public class ActivityEvaluateController extends BladeController {
 
-	private final IActivityDetailService activityDetailService;
+	private final IActivityEvaluateService activityEvaluateService;
 
 	/**
 	 * 详情
 	 */
 	@GetMapping("/detail")
 	@ApiOperationSupport(order = 1)
-	@ApiOperation(value = "详情", notes = "传入activityDetail")
-	public R<ActivityDetail> detail(ActivityDetail activityDetail) {
-		ActivityDetail detail = activityDetailService.getOne(Condition.getQueryWrapper(activityDetail));
+	@ApiOperation(value = "详情", notes = "传入activityEvaluate")
+	public R<ActivityEvaluate> detail(ActivityEvaluate activityEvaluate) {
+		ActivityEvaluate detail = activityEvaluateService.getOne(Condition.getQueryWrapper(activityEvaluate));
 		return R.data(detail);
 	}
 
@@ -64,9 +64,9 @@ public class ActivityDetailController extends BladeController {
 	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
-	@ApiOperation(value = "分页", notes = "传入activityDetail")
-	public R<IPage<ActivityDetail>> list(ActivityDetail activityDetail, Query query) {
-		IPage<ActivityDetail> pages = activityDetailService.page(Condition.getPage(query), Condition.getQueryWrapper(activityDetail));
+	@ApiOperation(value = "分页", notes = "传入activityEvaluate")
+	public R<IPage<ActivityEvaluate>> list(ActivityEvaluate activityEvaluate, Query query) {
+		IPage<ActivityEvaluate> pages = activityEvaluateService.page(Condition.getPage(query), Condition.getQueryWrapper(activityEvaluate));
 		return R.data(pages);
 	}
 
@@ -75,9 +75,9 @@ public class ActivityDetailController extends BladeController {
 	 */
 	@GetMapping("/page")
 	@ApiOperationSupport(order = 3)
-	@ApiOperation(value = "分页", notes = "传入activityDetail")
-	public R<IPage<ActivityDetailVO>> page(ActivityDetailVO activityDetail, Query query) {
-		IPage<ActivityDetailVO> pages = activityDetailService.selectActivityDetailPage(Condition.getPage(query), activityDetail);
+	@ApiOperation(value = "分页", notes = "传入activityEvaluate")
+	public R<IPage<ActivityEvaluateVO>> page(ActivityEvaluateVO activityEvaluate, Query query) {
+		IPage<ActivityEvaluateVO> pages = activityEvaluateService.selectActivityEvaluatePage(Condition.getPage(query), activityEvaluate);
 		return R.data(pages);
 	}
 
@@ -86,9 +86,9 @@ public class ActivityDetailController extends BladeController {
 	 */
 	@PostMapping("/save")
 	@ApiOperationSupport(order = 4)
-	@ApiOperation(value = "新增", notes = "传入activityDetail")
-	public R save(@Valid @RequestBody ActivityDetail activityDetail) {
-		return R.status(activityDetailService.save(activityDetail));
+	@ApiOperation(value = "新增", notes = "传入activityEvaluate")
+	public R save(@Valid @RequestBody ActivityEvaluate activityEvaluate) {
+		return R.status(activityEvaluateService.save(activityEvaluate));
 	}
 
 	/**
@@ -96,9 +96,9 @@ public class ActivityDetailController extends BladeController {
 	 */
 	@PostMapping("/update")
 	@ApiOperationSupport(order = 5)
-	@ApiOperation(value = "修改", notes = "传入activityDetail")
-	public R update(@Valid @RequestBody ActivityDetail activityDetail) {
-		return R.status(activityDetailService.updateById(activityDetail));
+	@ApiOperation(value = "修改", notes = "传入activityEvaluate")
+	public R update(@Valid @RequestBody ActivityEvaluate activityEvaluate) {
+		return R.status(activityEvaluateService.updateById(activityEvaluate));
 	}
 
 	/**
@@ -106,9 +106,9 @@ public class ActivityDetailController extends BladeController {
 	 */
 	@PostMapping("/submit")
 	@ApiOperationSupport(order = 6)
-	@ApiOperation(value = "新增或修改", notes = "传入activityDetail")
-	public R submit(@Valid @RequestBody ActivityDetail activityDetail) {
-		return R.status(activityDetailService.saveOrUpdate(activityDetail));
+	@ApiOperation(value = "新增或修改", notes = "传入activityEvaluate")
+	public R submit(@Valid @RequestBody ActivityEvaluate activityEvaluate) {
+		return R.status(activityEvaluateService.saveOrUpdate(activityEvaluate));
 	}
 
 	
@@ -119,7 +119,7 @@ public class ActivityDetailController extends BladeController {
 	@ApiOperationSupport(order = 8)
 	@ApiOperation(value = "删除", notes = "传入ids")
 	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
-		return R.status(activityDetailService.removeByIds(Func.toLongList(ids)));
+		return R.status(activityEvaluateService.removeByIds(Func.toLongList(ids)));
 	}
 
 	

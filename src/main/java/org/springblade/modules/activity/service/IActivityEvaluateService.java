@@ -14,28 +14,28 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service.impl;
+package org.springblade.modules.activity.service;
 
-import org.springblade.modules.activity.entity.ActivityDetail;
-import org.springblade.modules.activity.vo.ActivityDetailVO;
-import org.springblade.modules.activity.mapper.ActivityDetailMapper;
-import org.springblade.modules.activity.service.IActivityDetailService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import org.springblade.modules.activity.entity.ActivityEvaluate;
+import org.springblade.modules.activity.vo.ActivityEvaluateVO;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
- *  服务实现类
+ *  服务类
  *
  * @author BladeX
  * @since 2022-04-11
  */
-@Service
-public class ActivityDetailServiceImpl extends ServiceImpl<ActivityDetailMapper, ActivityDetail> implements IActivityDetailService {
+public interface IActivityEvaluateService extends IService<ActivityEvaluate> {
 
-	@Override
-	public IPage<ActivityDetailVO> selectActivityDetailPage(IPage<ActivityDetailVO> page, ActivityDetailVO activityDetail) {
-		return page.setRecords(baseMapper.selectActivityDetailPage(page, activityDetail));
-	}
+	/**
+	 * 自定义分页
+	 *
+	 * @param page
+	 * @param activityEvaluate
+	 * @return
+	 */
+	IPage<ActivityEvaluateVO> selectActivityEvaluatePage(IPage<ActivityEvaluateVO> page, ActivityEvaluateVO activityEvaluate);
 
 }

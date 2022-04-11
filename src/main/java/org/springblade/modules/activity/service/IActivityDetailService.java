@@ -25,7 +25,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  *  服务类
  *
  * @author BladeX
- * @since 2022-04-08
+ * @since 2022-04-11
  */
 public interface IActivityDetailService extends IService<ActivityDetail> {
 

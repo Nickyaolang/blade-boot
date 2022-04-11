@@ -14,28 +14,46 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service.impl;
+package org.springblade.modules.file.entity;
 
-import org.springblade.modules.activity.entity.ActivityDetail;
-import org.springblade.modules.activity.vo.ActivityDetailVO;
-import org.springblade.modules.activity.mapper.ActivityDetailMapper;
-import org.springblade.modules.activity.service.IActivityDetailService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
- *  服务实现类
+ * 实体类
  *
  * @author BladeX
  * @since 2022-04-11
  */
-@Service
-public class ActivityDetailServiceImpl extends ServiceImpl<ActivityDetailMapper, ActivityDetail> implements IActivityDetailService {
+@Data
+@ApiModel(value = "File对象", description = "File对象")
+public class File implements Serializable {
 
-	@Override
-	public IPage<ActivityDetailVO> selectActivityDetailPage(IPage<ActivityDetailVO> page, ActivityDetailVO activityDetail) {
-		return page.setRecords(baseMapper.selectActivityDetailPage(page, activityDetail));
-	}
+	private static final long serialVersionUID = 1L;
+
+	/**
+	* 主键
+	*/
+		@ApiModelProperty(value = "主键")
+		private Long id;
+	/**
+	* 外键
+	*/
+		@ApiModelProperty(value = "外键")
+		private Long foreignId;
+	/**
+	* 类别（1、活动）
+	*/
+		@ApiModelProperty(value = "类别（1、活动）")
+		private Integer category;
+	/**
+	* 类型（1、视频2、图片3、文件）
+	*/
+		@ApiModelProperty(value = "类型（1、视频2、图片3、文件）")
+		private Integer type;
+
 
 }

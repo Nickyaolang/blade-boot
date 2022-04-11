@@ -14,28 +14,28 @@
  *  this software without specific prior written permission.
  *  Author: Chill 庄骞 (smallchill@163.com)
  */
-package org.springblade.modules.activity.service.impl;
+package org.springblade.modules.file.service;
 
-import org.springblade.modules.activity.entity.ActivityDetail;
-import org.springblade.modules.activity.vo.ActivityDetailVO;
-import org.springblade.modules.activity.mapper.ActivityDetailMapper;
-import org.springblade.modules.activity.service.IActivityDetailService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import org.springblade.modules.file.entity.File;
+import org.springblade.modules.file.vo.FileVO;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
- *  服务实现类
+ *  服务类
  *
  * @author BladeX
  * @since 2022-04-11
  */
-@Service
-public class ActivityDetailServiceImpl extends ServiceImpl<ActivityDetailMapper, ActivityDetail> implements IActivityDetailService {
+public interface IFileService extends IService<File> {
 
-	@Override
-	public IPage<ActivityDetailVO> selectActivityDetailPage(IPage<ActivityDetailVO> page, ActivityDetailVO activityDetail) {
-		return page.setRecords(baseMapper.selectActivityDetailPage(page, activityDetail));
-	}
+	/**
+	 * 自定义分页
+	 *
+	 * @param page
+	 * @param file
+	 * @return
+	 */
+	IPage<FileVO> selectFilePage(IPage<FileVO> page, FileVO file);
 
 }
